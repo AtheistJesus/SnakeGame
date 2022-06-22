@@ -165,7 +165,6 @@ public class Game extends Application {
                 transition.setByY(-400);
                 transition.setDuration(Duration.seconds(5));
                 transition.play();
-
                  */
             }
             else if (keyEvent.getCode() == KeyCode.A && direction != 'd' && direction != 'a' && direction != '\u0000') {
@@ -176,7 +175,6 @@ public class Game extends Application {
                 transition.setByY(0);
                 transition.setDuration(Duration.seconds(5));
                 transition.play();
-
                  */
             }
             else if (keyEvent.getCode() == KeyCode.S && direction != 'w' && direction != 's') {
@@ -187,7 +185,6 @@ public class Game extends Application {
                 transition.setByY(400);
                 transition.setDuration(Duration.seconds(5));
                 transition.play();
-
                  */
             }
             else if (keyEvent.getCode() == KeyCode.D && direction != 'a' && direction != 'd') { // OVER HERE!!!!!!!!!!
@@ -198,7 +195,6 @@ public class Game extends Application {
                 transition.setByY(0);
                 transition.setDuration(Duration.seconds(5));
                 transition.play();
-
                  */
             }
         });
