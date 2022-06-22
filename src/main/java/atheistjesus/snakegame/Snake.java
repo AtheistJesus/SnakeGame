@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 public class Snake {
     public List<Rectangle> body = new ArrayList<>();
     public Rectangle head;
-    private Rectangle partOne, partTwo;
+    private final Rectangle partOne, partTwo;
     private final double size = 19.9;
 
     public Snake() {

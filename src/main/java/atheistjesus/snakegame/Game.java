@@ -22,9 +22,12 @@ import java.util.List;
 
 public class Game extends Application {
     Snake snake = new Snake();
-    private int score = 0;
-    private int highScore = 0;
+    public int score = 0;
+    public int highScore = loadHighScore();
     char direction = '\u0000';
+
+    public Game() throws IOException {}
+
     @Override
     public void start(Stage stage) {
         stage.setTitle("Snake Game");
@@ -133,6 +136,12 @@ public class Game extends Application {
                     scoreLabel.setText("Score: " + score);
                     if (score > highScore) {
                         highScore++;
+                        try {
+                            saveHighScore();
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     highScoreLabel.setText("High score: " + highScore);
                 }
@@ -233,28 +242,19 @@ public class Game extends Application {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        List<String> lines = Files.readAllLines(Path.of("C:\\Users\\Damian\\IdeaProjects\\SnakeGame\\src\\main\\java\\HighScore.txt"));
-        System.out.println(new File("C:\\Users\\Damian\\IdeaProjects\\SnakeGame\\src\\main\\java\\HighScore.txt").exists());
-        Game game = new Game();
-        //game.loadHighScore();
+    public static void main(String[] args) {
         launch();
-
-        /*
-        if (game.highScore > Integer.parseInt(lines.get(0))) {
-            game.saveHighScore();
-        }
-         */
     }
 
     public void saveHighScore() throws IOException {
-        File highScore = new File("C:\\Users\\Damian\\IdeaProjects\\SnakeGame\\src\\main\\java\\HighScore.txt");
-        FileWriter writer = new FileWriter(highScore);
-        writer.write(this.highScore);
+        File highScores = new File("src/main/java/HighScore.txt");
+        FileWriter writer = new FileWriter(highScores);
+        writer.write(highScore + "");
+        writer.close();
     }
 
-    public void loadHighScore() throws IOException {
-        List<String> file = Files.readAllLines(Path.of("C:\\Users\\Damian\\IdeaProjects\\SnakeGame\\src\\main\\java\\HighScore.txt"));
-        highScore = Integer.parseInt(file.get(0));
+    public int loadHighScore() throws IOException {
+        List<String> file = Files.readAllLines(Path.of("src/main/java/HighScore.txt"));
+        return Integer.parseInt(file.get(0));
     }
 }
